@@ -1,0 +1,34 @@
+#
+# 운영 환경 설정
+#
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  # 로컬 PC 데이터베이스 구성 설정
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.mariadb.jdbc.Driver
+  jackson:
+    deserialization:
+      # 정의되지 않은 필드 유입시 예외 발생 비활성화
+      fail-on-unknown-properties: false
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: true
+  web:
+    resources:
+      static-locations: classpath:/static/
+      # 캐시 활성화
+      cache:
+        period: 36000
+
+logging:
+  level:
+    root: ${LOG_LEVEL_ROOT}
+    org.siwon.sprouty: ${LOG_LEVEL_APP}
+  file:
+    path: ${LOG_FILE_PATH}

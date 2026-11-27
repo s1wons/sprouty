@@ -26,6 +26,14 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
+### Application ###
+# Application Log Files
+logs/
+*.log
+# Environment Variables
+.env
+.env.*
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
