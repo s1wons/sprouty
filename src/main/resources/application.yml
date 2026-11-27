@@ -1,3 +1,37 @@
+#
+# 공통 환경 설정
+#
+
 spring:
   application:
     name: sprouty
+  main:
+    # 애플리케이션 구동 시 스프링 배너 출력 비활성화
+    banner-mode: off
+  profiles:
+    # 현재 활성화할 프로파일 지정
+    active: local
+  config:
+    # 활성화된 프로파일에 따른 외부 환경 변수 파일 로드
+    import: optional:file:.env.${spring.profiles.active}[.properties]
+  jackson:
+    deserialization:
+      # 정의되지 않은 필드 유입시 예외 발생 허용
+      fail-on-unknown-properties: true
+    # 타임존 설정
+    time-zone: Asia/Seoul
+
+server:
+  servlet:
+    # HTTP 요청 및 응답에 대한 UTF-8 문자 인코딩 강제 적용
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+mybatis:
+  config-location: classpath:sql/mybatis/mybatis-config.xml
+  # 마이바티스 매퍼 쿼리 작업시 매핑 타입으로 사용될 도메인 클래스들의 패키지 경로 지정
+  type-aliases-package: org.siwon.sprouty.domain.**
+  # 마이바티스 매퍼 XML 파일 경로 지정
+  mapper-locations: classpath:sql/mybatis/mappers/*_mapper.xml

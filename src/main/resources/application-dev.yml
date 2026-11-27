@@ -1,0 +1,30 @@
+#
+# 로컬 개발 환경 설정
+#
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  # 로컬 PC 데이터베이스 구성 설정
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.mariadb.jdbc.Driver
+  thymeleaf:
+    prefix: file:src/main/resources/templates/
+    cache: false
+  web:
+    resources:
+      static-locations: file:src/main/resources/static/
+
+server:
+  port: 8181
+
+logging:
+  level:
+    root: ${LOG_LEVEL_ROOT}
+    org.siwon.sprouty: ${LOG_LEVEL_APP}
+  file:
+    path: ${LOG_FILE_PATH}
